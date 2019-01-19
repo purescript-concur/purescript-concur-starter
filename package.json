@@ -1,0 +1,29 @@
+{
+  "name": "purescript-concur-starter",
+  "version": "0.1.0",
+  "description": "A Starter kit for Purescript-Concur. Uses Parcel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf output && rimraf .pulp-cache",
+    "build": "pulp build -- --censor-lib --strict",
+    "ps": "bower install && pulp build",
+    "prod": "parcel build index.html",
+    "start": "parcel index.html",
+    "watch": "parcel watch index.html"
+  },
+  "author": "Anupam Jain <ajnsit@gmail.com> (https://github.com/ajnsit)",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.8.6",
+    "parcel-bundler": "^1.9.7",
+    "pulp": "^12.3.1",
+    "purescript": "^0.12.1",
+    "purescript-psa": "^0.7.3",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}
