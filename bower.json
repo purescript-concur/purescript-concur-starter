@@ -13,6 +13,6 @@
     "url": "git://github.com/ajnsit/purescript-concur-starter.git"
   },
   "dependencies": {
-    "purescript-concur-react": "^0.3.1"
+    "purescript-concur-react": "^0.3.3"
   }
 }
