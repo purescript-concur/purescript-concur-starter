@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf output && rimraf .pulp-cache",
+    "clean": "rimraf output && rimraf .pulp-cache && rimraf temp",
     "build": "pulp build -- --censor-lib --strict",
-    "ps": "bower install && pulp build",
-    "prod": "parcel build index.html",
+    "dev": "rimraf temp && bower install && pulp build && parcel build index.html",
+    "prod": "rimraf temp && bower install && mkdir temp && pulp build --to temp/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js temp/index.prod.js --js_output_file temp/index.prod.minified.js && cp index.prod.html temp && parcel build temp/index.prod.html && rimraf temp",
+    "prod1": "parcel build index.html",
     "start": "parcel index.html",
     "watch": "parcel watch index.html"
   },
