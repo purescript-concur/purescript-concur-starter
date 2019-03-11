@@ -14,7 +14,7 @@ Don't forget to tweak the project name and other details in package.json and bow
 
 > npm install
 
-> npm run ps
+> npm run dev
 
 ### Run Dev Server
 
@@ -32,4 +32,4 @@ So you get immediate recompilation even with Purescript.
 
 ### Build production artifacts
 
-> npm prod
+> npm run prod
