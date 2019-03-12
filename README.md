@@ -4,6 +4,10 @@ A Starter kit for Purescript-Concur. Uses Parcel.
 
 ## Usage
 
+### Read the docs
+
+At least read about `Widget`s on the [documentation README](https://github.com/ajnsit/concur-documentation/blob/master/README.md#a-widget).
+
 ### Grab the code
 
 > git clone https://github.com/ajnsit/purescript-concur-starter.git
