@@ -1,6 +1,6 @@
 # Purescript Concur Starter
 
-A Starter kit for Purescript-Concur. Uses Parcel.
+A Starter kit for Purescript-Concur. Uses Npm, Spago, Google Closure Compiler, and Parcel. Builds tiny 180KB uncompressed bundles!
 
 ## Usage
 
