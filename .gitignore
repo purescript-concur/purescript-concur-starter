@@ -8,3 +8,4 @@ html/index.js
 /.psc-package
 /.cache
 /dist
+/.spago

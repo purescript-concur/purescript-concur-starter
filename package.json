@@ -1,27 +1,28 @@
 {
   "name": "purescript-concur-starter",
   "version": "0.1.0",
-  "description": "A Starter kit for Purescript-Concur. Uses Parcel.",
+  "description": "A Starter kit for Purescript-Concur. Uses Spago and Parcel.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf output && rimraf .pulp-cache && rimraf temp",
-    "build": "pulp build -- --censor-lib --strict",
-    "dev": "rimraf temp && bower install && pulp build && parcel build index.html",
-    "prod": "rimraf temp && bower install && mkdir temp && pulp build --to temp/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js temp/index.prod.js --js_output_file temp/index.prod.minified.js && cp index.prod.html temp && parcel build temp/index.prod.html && rimraf temp",
-    "prod1": "parcel build index.html",
-    "start": "parcel index.html",
-    "watch": "parcel watch index.html"
+    "clean": "rimraf .cache .spago .psci_modules output .pulp-cache prod dist",
+    "build": "spago build",
+    "dev": "rimraf dist && spago install && spago build && parcel build index.html",
+    "prod": "rimraf prod dist && mkdir prod && spago bundle --main Main --to prod/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js prod/index.prod.js --js_output_file prod/index.js && cp index.html prod/index.html && parcel build prod/index.html && rimraf prod",
+    "start": "spago build && parcel index.html",
+    "watch": "spago build && parcel watch index.html"
   },
   "author": "Anupam Jain <ajnsit@gmail.com> (https://github.com/ajnsit)",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.8.8",
+    "google-closure-compiler": "^20190325.0.0",
     "parcel-bundler": "^1.12.3",
     "pulp": "^12.3.1",
     "purescript": "^0.12.3",
     "purescript-psa": "^0.7.3",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "spago": "^0.7.5"
   },
   "dependencies": {
     "react": "^16.8.6",
