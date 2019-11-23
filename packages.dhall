@@ -112,10 +112,28 @@ let mkPackage =
       https://raw.githubusercontent.com/purescript/package-sets/psc-0.12.3-20190330/src/mkPackage.dhall sha256:0b197efa1d397ace6eb46b243ff2d73a3da5638d8d0ac8473e8e4a8fc528cf57
 
 let upstream =
-      https://raw.githubusercontent.com/purescript/package-sets/psc-0.12.3-20190330/src/packages.dhall sha256:cb0cdde5926cfdff5bd17bb2508a85b5eee794088f253f59f884766828ba722c
+      https://github.com/purescript/package-sets/releases/download/psc-0.13.4-20191110/packages.dhall sha256:563a7f694e18e6399f7f6d01f5b7e3c3345781655d99945768f48e458feb93a4
 
-let overrides = {=}
+let overrides =
+      { concur-react =
+          upstream.concur-react // { version = "v0.4.0" }
+      }
 
-let additions = {=}
+let additions =
+      { concur-core =
+          mkPackage
+          [ "aff"
+          , "arrays"
+          , "avar"
+          , "console"
+          , "foldable-traversable"
+          , "free"
+          , "nonempty"
+          , "profunctor-lenses"
+          , "tailrec"
+          ]
+          "https://github.com/purescript-concur/purescript-concur-core"
+          "v0.4.0"
+      }
 
 in  upstream // overrides // additions
