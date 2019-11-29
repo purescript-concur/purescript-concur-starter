@@ -6,7 +6,7 @@ A Starter kit for Purescript-Concur. Uses Npm, Spago, Google Closure Compiler, a
 
 ### Grab the code
 
-> git clone https://github.com/ajnsit/purescript-concur-starter.git
+> git clone https://github.com/purescript-concur/purescript-concur-starter.git
 
 Don't forget to tweak the project name and other details in package.json and bower.json
 
