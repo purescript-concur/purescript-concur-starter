@@ -4,6 +4,7 @@ node_modules/
 bower_components/
 tmp/
 output/
+prod/
 html/index.js
 /.psc-package
 /.cache
