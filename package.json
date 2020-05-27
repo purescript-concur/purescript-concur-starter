@@ -7,10 +7,10 @@
     "test": "spago test",
     "clean": "rimraf .cache .spago .psci_modules output .pulp-cache prod dist",
     "build": "spago build",
-    "dev": "rimraf dist && spago build && cross-env NODE_ENV=development parcel build --public-url ./ index.html",
-    "prod": "rimraf prod dist && mkdir prod && spago bundle-app --main Main --to prod/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js prod/index.prod.js --js_output_file prod/index.js && cp index.html prod/index.html && parcel build --public-url ./ prod/index.html && rimraf prod",
-    "start": "spago build && parcel index.html",
-    "watch": "spago build && parcel watch index.html"
+    "dev": "rimraf dist && spago build && cross-env NODE_ENV=development parcel build --public-url ./ ./src/html/index.html",
+    "prod": "rimraf prod dist && mkdir prod && spago bundle-app --main Main --to prod/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js prod/index.prod.js --js_output_file prod/index.js && cp ./src/html/index.html prod/index.html && parcel build --public-url ./ prod/index.html && rimraf prod",
+    "start": "spago build && parcel ./src/html/index.html",
+    "watch": "spago build && parcel watch ./src/html/index.html"
   },
   "author": "Anupam Jain <ajnsit@gmail.com> (https://github.com/ajnsit)",
   "license": "MIT",
@@ -19,6 +19,7 @@
     "parcel-bundler": "^1.12.4",
     "purescript": "^0.13.6",
     "rimraf": "^3.0.2",
+    "sass": "^1.26.5",
     "spago": "^0.15.2"
   },
   "dependencies": {

@@ -1,0 +1,73 @@
+div.memory {
+    width: 114px;
+    margin-left: 2px;
+    padding: 3px;
+    background-color: lightgray;
+    text-align: left;
+    font-size: 6pt;
+    color: gray;
+    margin-bottom: 1px;
+}
+div.operator {
+    width: 114px;
+    margin-left: 2px;
+    padding: 3px;
+    background-color: lightgray;
+    text-align: left;
+    font-size: 6pt;
+    color: gray;
+    margin-bottom: 4px;
+}
+
+div.display {
+    width: 114px;
+    margin-left: 2px;
+    padding: 2px;
+    border: 1px solid gray;
+    text-align: right;
+}
+
+table {
+    tbody {
+        tr {
+            td {
+                background-color: yellow;
+                text-align: center;
+                width: 25px;
+                border: 1px solid green;
+
+                &.operator {
+                    background-color: lightgreen;
+                    text-align: center;
+                    width: 20px;
+                    border: 1px solid green;
+                    color: green;
+                }
+
+                &.decimal {
+                    background-color: green;
+                    text-align: center;
+                    width: 20px;
+                    border: 1px solid lightgreen;
+                    color: lightgreen;
+                }
+                
+                &.result {
+                    background-color: chocolate;
+                    text-align: center;
+                    width: 20px;
+                    border: 1px solid maroon;
+                    color: white;
+                }
+
+                &.cancel {
+                    background-color: violet;
+                    text-align: center;
+                    width: 20px;
+                    border: 1px solid purple;
+                    color: purple;
+                }
+            }
+        }
+    }
+}
