@@ -7,22 +7,36 @@
     "test": "spago test",
     "clean": "rimraf .cache .spago .psci_modules output .pulp-cache prod dist",
     "build": "spago build",
-    "dev": "rimraf dist && spago build && cross-env NODE_ENV=development parcel build --public-url ./ index.html",
-    "prod": "rimraf prod dist && mkdir prod && spago bundle-app --main Main --to prod/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js prod/index.prod.js --js_output_file prod/index.js && cp index.html prod/index.html && parcel build --public-url ./ prod/index.html && rimraf prod",
     "start": "spago build && parcel index.html",
-    "watch": "spago build && parcel watch index.html"
+    "watch": "spago build && parcel watch index.html",
+
+    "_1": "THESE BUILD MODES WORK ----------------------------------------------",
+
+    "parcel": "rimraf output dist && spago build && cp index.dev.js index.js && cross-env NODE_ENV=development parcel build --public-url ./ index.html && rm index.js",
+    "zephyr": "rimraf output dist && spago build --purs-args '-g corefn' && zephyr -f Main.main && cp index.dce.js index.js && parcel build --public-url ./ index.html && rm index.js",
+    "parcel-closure": "rimraf output dist && spago build && cp index.dev.js index.js && parcel build --public-url ./ index.html && java -jar closure-compiler/closure-compiler-v20200517.jar --isolation_mode IIFE --js dist/purescript*.js --js_output_file dist/index.js && cp index.html dist/index.html && rm index.js dist/purescript*",
+    "zephyr-parcel-closure": "rimraf output dist parcel && spago build --purs-args '-g corefn' && zephyr -f Main.main && cp index.dce.js index.js && parcel build --public-url ./ index.html && java -jar closure-compiler/closure-compiler-v20200517.jar --isolation_mode IIFE --js dist/purescript*.js --js_output_file dist/index.js && cp index.html dist/index.html && rm index.js dist/purescript*",
+    "spago": "rimraf dist output && mkdir dist && spago bundle-app --main Main --to dist/index.js && cp index.html dist/index.html",
+    "spago-closure": "rimraf dist output && mkdir dist && spago bundle-app --main Main --to index.js && java -jar closure-compiler/closure-compiler-v20200517.jar --js index.js --js_output_file dist/index.js && cp index.html dist/index.html",
+    "spago-closure-iife": "rimraf dist output && mkdir dist && spago bundle-app --main Main --to index.js && java -jar closure-compiler/closure-compiler-v20200517.jar --js index.js --isolation_mode IIFE --js_output_file dist/index.js && cp index.html dist/index.html",
+
+    "_2": "THESE BUILD MODES DON'T WORK ----------------------------------------------",
+
+    "zephyr-closure": "echo 'THIS ONE FAILS. CLOSURE GENERATES INVALID CODE. EXIT.' && false && rimraf dist && mkdir dist && spago build --purs-args '-g corefn' && zephyr -f Main.main && java -jar closure-compiler/closure-compiler-v20200517.jar --js index.dce.js --js 'dce-output/**.js' --js_output_file dist/index.js && cp index.html dist/index.html",
+    "closure-parcel": "echo 'THIS ONE FAILS. CLOSURE GENERATES INVALID CODE. EXIT.' && false && rimraf output dist && spago build && java -jar closure-compiler/closure-compiler-v20200517.jar --isolation_mode IIFE --js index.dev.js --js 'output/**.js' --js_output_file index.js && parcel build --public-url ./ index.html && rm index.js",
+    "spago-closure-advanced": "echo \"CLOSURE ADVANCED MODE DOESN'T WORK\" && false && rimraf dist output && mkdir dist && spago bundle-app --main Main --to index.js && java -jar closure-compiler/closure-compiler-v20200517.jar --compilation_level ADVANCED_OPTIMIZATIONS --js index.js --js_output_file dist/index.js && cp index.html dist/index.html",
+    "spago-closure-iife-advanced": "echo \"CLOSURE ADVANCED MODE DOESN'T WORK\" && false && rimraf dist output && mkdir dist && spago bundle-app --main Main --to index.js && java -jar closure-compiler/closure-compiler-v20200517.jar --isolation_mode IIFE --compilation_level ADVANCED_OPTIMIZATIONS --js index.js --js_output_file dist/index.js && cp index.html dist/index.html"
   },
   "author": "Anupam Jain <ajnsit@gmail.com> (https://github.com/ajnsit)",
   "license": "MIT",
   "devDependencies": {
-    "cross-env": "^7.0.1",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "cross-env": "^7.0.2",
     "parcel-bundler": "^1.12.4",
-    "purescript": "^0.13.6",
+    "purescript": "^0.13.8",
     "rimraf": "^3.0.2",
+    "rollup": "^2.16.1",
     "spago": "^0.15.2"
   },
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  }
+  "dependencies": {}
 }

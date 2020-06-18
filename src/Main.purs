@@ -3,15 +3,15 @@ module Main where
 import Prelude
 
 import Concur.Core (Widget)
-import Concur.React (HTML)
-import Concur.React.DOM as D
-import Concur.React.Props as P
-import Concur.React.Run (runWidgetInDom)
+import Concur.VDom (HTML)
+import Concur.VDom.DOM as D
+import Concur.VDom.Props as P
+import Concur.VDom.Run (runWidgetInDom)
 import Effect (Effect)
 
 hello :: forall a. Widget HTML a
 hello = do
-  void $ D.button [P.onClick] [D.text "Say Hello"]
+  void $ D.node "button" [P.handle "click"] [D.text "Say Hello"]
   D.text "Hello Sailor!"
 
 main :: Effect Unit
