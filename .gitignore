@@ -10,3 +10,4 @@ html/index.js
 /.cache
 /dist
 /.spago
+/.parcel-cache
