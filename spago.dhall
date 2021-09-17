@@ -4,6 +4,12 @@ You can edit this file as you like.
 -}
 { sources = [ "src/**/*.purs", "test/**/*.purs" ]
 , name = "purescript-concur-starter"
-, dependencies = [ "effect", "console", "concur-core", "concur-react" ]
+, dependencies =
+  [ "concur-core"
+  , "concur-react"
+  , "console"
+  , "effect"
+  , "prelude" 
+  ]
 , packages = ./packages.dhall
 }
