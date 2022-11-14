@@ -4,13 +4,6 @@ Welcome to your new Dhall package-set!
 Below are instructions for how to edit this file for most use
 cases, so that you don't need to know Dhall to use it.
 
-## Warning: Don't Move This Top-Level Comment!
-
-Due to how `dhall format` currently works, this comment's
-instructions cannot appear near corresponding sections below
-because `dhall format` will delete the comment. However,
-it will not delete a top-level comment like this one.
-
 ## Use Cases
 
 Most will want to do one or both of these options:
@@ -31,28 +24,25 @@ Purpose:
     the package set's repo
 
 Syntax:
-Replace the overrides' "{=}" (an empty record) with the following idea
-The "//" or "⫽" means "merge these two records and
-  when they have the same value, use the one on the right:"
+where `entityName` is one of the following:
+- dependencies
+- repo
+- version
 -------------------------------
-let override =
-  { packageName =
-      upstream.packageName // { updateEntity1 = "new value", updateEntity2 = "new value" }
-  , packageName =
-      upstream.packageName // { version = "v4.0.0" }
-  , packageName =
-      upstream.packageName // { repo = "https://www.example.com/path/to/new/repo.git" }
-  }
+let upstream = --
+in  upstream
+  with packageName.entityName = "new value"
 -------------------------------
 
 Example:
 -------------------------------
-let overrides =
-  { halogen =
-      upstream.halogen // { version = "master" }
-  , halogen-vdom =
-      upstream.halogen-vdom // { version = "v4.0.0" }
-  }
+let upstream = --
+in  upstream
+  with halogen.version = "master"
+  with halogen.repo = "https://example.com/path/to/git/repo.git"
+
+  with halogen-vdom.version = "v4.0.0"
+  with halogen-vdom.dependencies = [ "extra-dependency" ] # halogen-vdom.dependencies
 -------------------------------
 
 ### Additions
@@ -61,61 +51,107 @@ Purpose:
 - Add packages that aren't already included in the default package set
 
 Syntax:
-Replace the additions' "{=}" (an empty record) with the following idea:
+where `<version>` is:
+- a tag (i.e. "v4.0.0")
+- a branch (i.e. "master")
+- commit hash (i.e. "701f3e44aafb1a6459281714858fadf2c4c2a977")
 -------------------------------
-let additions =
-  { "package-name" =
-       mkPackage
-         [ "dependency1"
-         , "dependency2"
-         ]
-         "https://example.com/path/to/git/repo.git"
-         "tag ('v4.0.0') or branch ('master')"
-  , "package-name" =
-       mkPackage
-         [ "dependency1"
-         , "dependency2"
-         ]
-         "https://example.com/path/to/git/repo.git"
-         "tag ('v4.0.0') or branch ('master')"
-  , etc.
-  }
+let upstream = --
+in  upstream
+  with new-package-name =
+    { dependencies =
+       [ "dependency1"
+       , "dependency2"
+       ]
+    , repo =
+       "https://example.com/path/to/git/repo.git"
+    , version =
+        "<version>"
+    }
 -------------------------------
 
 Example:
 -------------------------------
-let additions =
-  { benchotron =
-      mkPackage
-        [ "arrays"
-        , "exists"
-        , "profunctor"
-        , "strings"
-        , "quickcheck"
-        , "lcg"
-        , "transformers"
-        , "foldable-traversable"
-        , "exceptions"
-        , "node-fs"
-        , "node-buffer"
-        , "node-readline"
-        , "datetime"
-        , "now"
-        ]
-        "https://github.com/hdgarrood/purescript-benchotron.git"
-        "v7.0.0"
-  }
+let upstream = --
+in  upstream
+  with benchotron =
+      { dependencies =
+          [ "arrays"
+          , "exists"
+          , "profunctor"
+          , "strings"
+          , "quickcheck"
+          , "lcg"
+          , "transformers"
+          , "foldable-traversable"
+          , "exceptions"
+          , "node-fs"
+          , "node-buffer"
+          , "node-readline"
+          , "datetime"
+          , "now"
+          ]
+      , repo =
+          "https://github.com/hdgarrood/purescript-benchotron.git"
+      , version =
+          "v7.0.0"
+      }
 -------------------------------
 -}
-
-let mkPackage =
-      https://raw.githubusercontent.com/purescript/package-sets/psc-0.12.3-20190330/src/mkPackage.dhall sha256:0b197efa1d397ace6eb46b243ff2d73a3da5638d8d0ac8473e8e4a8fc528cf57
-
 let upstream =
-      https://github.com/purescript/package-sets/releases/download/psc-0.14.3-20210722/packages.dhall sha256:1ceb43aa59436bf5601bac45f6f3781c4e1f0e4c2b8458105b018e5ed8c30f8c
+      https://github.com/purescript/package-sets/releases/download/psc-0.15.4-20221114/packages.dhall
+        sha256:408417e1565850b0d5eae0d3ad9e11757202a1b44bb86c1ec2d595e4fef58141
 
-let overrides = {=}
+in  upstream
+  with concur-core =
+    { dependencies =
+        [ "aff"
+        , "aff-bus"
+        , "arrays"
+        , "avar"
+        , "console"
+        , "control"
+        , "datetime"
+        , "effect"
+        , "either"
+        , "exceptions"
+        , "foldable-traversable"
+        , "free"
+        , "identity"
+        , "lazy"
+        , "maybe"
+        , "newtype"
+        , "parallel"
+        , "prelude"
+        , "profunctor-lenses"
+        , "tailrec"
+        , "transformers"
+        , "tuples"
+        ]
+    , repo = "https://github.com/purescript-concur/purescript-concur-core"
+    , version = "master"
+    }
+  with concur-react =
+    { dependencies =
+      [ "aff"
+      , "arrays"
+      , "concur-core"
+      , "console"
+      , "effect"
+      , "either"
+      , "exceptions"
+      , "maybe"
+      , "prelude"
+      , "react"
+      , "react-dom"
+      , "transformers"
+      , "tuples"
+      , "unsafe-coerce"
+      , "web-dom"
+      , "web-events"
+      , "web-html"
+      ]
+    , repo = "https://github.com/purescript-concur/purescript-concur-react"
+    , version = "master"
+    }
 
-let additions = {=}
-
-in  upstream // overrides // additions
