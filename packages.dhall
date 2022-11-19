@@ -129,7 +129,7 @@ in  upstream
         , "tuples"
         ]
     , repo = "https://github.com/purescript-concur/purescript-concur-core"
-    , version = "master"
+    , version = "main"
     }
   with concur-react =
     { dependencies =
@@ -152,6 +152,5 @@ in  upstream
       , "web-html"
       ]
     , repo = "https://github.com/purescript-concur/purescript-concur-react"
-    , version = "master"
+    , version = "main"
     }
-
