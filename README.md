@@ -14,7 +14,7 @@ Don't forget to tweak the project name and other details in package.json and bow
 
 > npm install
 
-> npm run dev
+> npm run build
 
 ### Run Dev Server
 
@@ -33,3 +33,13 @@ So you get immediate recompilation even with Purescript.
 ### Build production artifacts
 
 > npm run prod
+
+The artifacts are put into the `dist/` folder.
+
+## Sample Application
+
+The starter kit contains a simple yet non-trivial concur application that lets you convert between feet and inches. It also acts as a mini tutorial for Concur. Read through the code at [Main.purs](src/Main.purs)!
+
+The running application looks something like this -
+
+<img width="409" alt="image" src="https://user-images.githubusercontent.com/127294/216365396-7f3338ea-f5b0-439b-a584-5f872523d873.png">
