@@ -12,17 +12,21 @@
     "start": "spago build && parcel index.html",
     "watch": "spago build && parcel watch index.html"
   },
-  "author": "Anupam Jain <ajnsit@gmail.com> (https://github.com/ajnsit)",
+  "author": {
+    "name": "Anupam Jain",
+    "email": "ajnsit at alphabet's email service"
+  },
   "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "devDependencies": {
-    "parcel": "^2.8.0",
     "process": "^0.11.10",
-    "purescript": "^0.15.6",
+    "esbuild": "^0.17.5",
+    "parcel": "^2.8.3",
+    "purescript": "^0.15.7",
     "rimraf": "^3.0.2",
     "spago": "^0.20.9"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   }
 }
