@@ -1,4 +1,4 @@
-import * as Main from './output/Main/index';
+import * as Main from '../output/Main/index';
 
 function main () {
     /*

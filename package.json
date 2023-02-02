@@ -4,17 +4,14 @@
   "description": "A Starter kit for Purescript-Concur. Uses Spago and Parcel.",
   "main": "index.js",
   "scripts": {
-    "test": "spago test",
-    "clean": "rimraf .cache .spago .psci_modules output .pulp-cache prod dist",
     "build": "spago build",
-    "dev": "rimraf dist && spago build && cross-env NODE_ENV=development parcel build --public-url ./ index.html",
-    "prod": "rimraf prod dist && mkdir prod && spago bundle-app --main Main --to prod/index.prod.js && java -jar closure-compiler/closure-compiler-v20190301.jar --js prod/index.prod.js --js_output_file prod/index.js && cp index.html prod/index.html && parcel build --public-url ./ prod/index.html && rimraf prod",
-    "start": "spago build && parcel index.html",
-    "watch": "spago build && parcel watch index.html"
-  },
-  "author": {
-    "name": "Anupam Jain",
-    "email": "ajnsit at alphabet's email service"
+    "test": "spago test",
+    "start": "parcel dev/index.html --open",
+    "watch": "parcel watch dev/index.html",
+    "clean": "rimraf .cache .spago .psci_modules output .pulp-cache prod dist",
+    "dev": "rimraf dist && spago build && cross-env NODE_ENV=development parcel build --public-url ./ dev/index.html",
+    "prod": "rimraf temp && rimraf dist && mkdir temp && cp dev/index.html temp/ && spago bundle-app --to temp/index.js && java -jar ../closure-compiler/closure-compiler-v20190301.jar --js temp/index.js --js_output_file temp/minified.js && mv temp/minified.js temp/index.js && parcel build --public-url ./ temp/index.html && rimraf temp",
+    "docs": "cd examples && npm run examples-prod && cp docs/logo.png dist && cp docs/Purescript-Concur-Performance.png dist && rimraf docs && mv dist docs"
   },
   "license": "MIT",
   "dependencies": {
